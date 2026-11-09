@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fox Fitness Family</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="shortcut icon" href="logo.svg">
+<link rel="apple-touch-icon" href="logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@500;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0d0c; --bg2:#121614; --card:#171c19; --line:#25302a;
+  --green:#7ED321; --green2:#5fb31a; --text:#f2f5f3; --muted:#9aa8a0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,.brand{font-family:"Exo 2",sans-serif;letter-spacing:.01em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+
+/* NAV */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:.35s;padding:18px 0}
+nav.solid{background:rgba(11,13,12,.88);backdrop-filter:blur(10px);padding:10px 0;border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem}
+.brand svg{width:44px;height:44px}
+.links{display:flex;gap:28px;align-items:center;font-weight:500;font-size:.95rem}
+.links a:not(.btn){opacity:.85;position:relative}
+.links a:not(.btn)::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--green);transition:.3s}
+.links a:not(.btn):hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#0b0d0c;font-weight:700;padding:12px 22px;border-radius:999px;transition:.25s;font-family:"Exo 2",sans-serif;letter-spacing:.03em}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px -8px var(--green)}
+.btn.ghost{background:transparent;color:var(--text);border:2px solid rgba(255,255,255,.35)}
+.btn.ghost:hover{border-color:var(--green);color:var(--green);box-shadow:none}
+.burger{display:none;background:none;border:0;color:#fff;font-size:1.8rem;cursor:pointer}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:center;overflow:hidden}
+.hero-img{position:absolute;inset:0;background:url(hero.jpg) center/cover;animation:kenburns 22s ease-in-out infinite alternate;transform-origin:center 60%}
+@keyframes kenburns{from{transform:scale(1.04)}to{transform:scale(1.18) translateY(-2%)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:
+  linear-gradient(90deg,rgba(11,13,12,.95) 0%,rgba(11,13,12,.75) 45%,rgba(11,13,12,.25) 100%),
+  linear-gradient(0deg,var(--bg) 0%,transparent 30%)}
+.hero .wrap{position:relative;z-index:2;width:100%}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:18px}
+.tag::before{content:"";width:34px;height:2px;background:var(--green)}
+.hero h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:.98;font-weight:900;text-transform:uppercase;max-width:760px}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 span i{display:block;font-style:normal;transform:translateY(110%);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2) i{animation-delay:.15s;color:var(--green)}
+.hero h1 span:nth-child(3) i{animation-delay:.3s}
+@keyframes rise{to{transform:none}}
+.hero p{max-width:520px;color:#cfd8d3;font-size:1.1rem;margin:24px 0 34px;opacity:0;animation:fade 1s .6s forwards}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fade 1s .8s forwards}
+@keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.swoosh{position:absolute;right:-8%;top:50%;width:min(60vw,720px);transform:translateY(-50%);z-index:1;opacity:.5;pointer-events:none}
+.swoosh path{stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.4s .4s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.scroll{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:2;width:26px;height:42px;border:2px solid rgba(255,255,255,.4);border-radius:14px}
+.scroll::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;background:var(--green);border-radius:2px;animation:wheel 1.6s infinite}
+@keyframes wheel{to{transform:translateY(14px);opacity:0}}
+
+/* MARQUEE */
+.marquee{background:var(--green);color:#0b0d0c;overflow:hidden;padding:14px 0;transform:rotate(-1.2deg);margin:-10px -20px 0;position:relative;z-index:3}
+.marquee div{display:flex;gap:40px;white-space:nowrap;animation:slide 25s linear infinite;font-family:"Exo 2",sans-serif;font-weight:900;font-size:1.25rem;text-transform:uppercase}
+.marquee span::after{content:"✦";margin-left:40px}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+section{padding:110px 0}
+.head{max-width:640px;margin-bottom:56px}
+.head h2{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;line-height:1.08;text-transform:uppercase}
+.head h2 em{font-style:normal;color:var(--green)}
+.head p{color:var(--muted);margin-top:14px}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:80px}
+.stat{border-left:3px solid var(--green);padding:6px 0 6px 20px}
+.stat b{font-family:"Exo 2",sans-serif;font-size:2.8rem;font-weight:900;display:block;line-height:1}
+.stat small{color:var(--muted);font-size:.9rem}
+
+/* SERVICES */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px;position:relative;overflow:hidden;transition:.35s}
+.card::before{content:"";position:absolute;inset:auto -40% -60% auto;width:220px;height:220px;border-radius:50%;background:radial-gradient(var(--green),transparent 70%);opacity:0;transition:.4s}
+.card:hover{transform:translateY(-8px);border-color:var(--green)}
+.card:hover::before{opacity:.25}
+.ico{width:54px;height:54px;border-radius:14px;background:rgba(126,211,33,.12);display:grid;place-items:center;margin-bottom:20px}
+.ico svg{width:28px;height:28px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:1.25rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.95rem}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.photo{border-radius:22px;overflow:hidden;position:relative;aspect-ratio:4/3}
+.photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.photo:hover img{transform:scale(1.06)}
+.photo::after{content:"";position:absolute;inset:0;border:2px solid var(--green);border-radius:22px;transform:translate(14px,14px);z-index:-1}
+.photo-wrap{position:relative}
+.badge{position:absolute;right:-18px;bottom:-22px;background:var(--green);color:#0b0d0c;border-radius:18px;padding:18px 22px;font-family:"Exo 2",sans-serif;font-weight:900;line-height:1.1;animation:float 4s ease-in-out infinite}
+.badge b{font-size:2rem;display:block}
+@keyframes float{50%{transform:translateY(-10px)}}
+.checks{list-style:none;margin-top:24px;display:grid;gap:12px}
+.checks li{display:flex;gap:12px;align-items:flex-start}
+.checks li::before{content:"";flex:0 0 22px;height:22px;border-radius:50%;background:var(--green) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b0d0c' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/13px no-repeat;margin-top:2px}
+
+/* HORAIRES */
+#horaires{background:var(--bg2);position:relative;overflow:hidden}
+.sched-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:34px}
+.tabs{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px}
+.tabs button{border:0;background:none;color:var(--muted);font:700 1rem "Exo 2",sans-serif;padding:12px 28px;border-radius:999px;cursor:pointer;transition:.3s;letter-spacing:.03em}
+.tabs button.on{background:var(--green);color:#0b0d0c}
+.live{display:inline-flex;align-items:center;gap:10px;font-weight:600;padding:10px 18px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.dot{width:10px;height:10px;border-radius:50%;background:#e5484d}
+.live.open .dot{background:var(--green);box-shadow:0 0 0 0 var(--green);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(126,211,33,0)}100%{box-shadow:0 0 0 0 rgba(126,211,33,0)}}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.day{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 14px;text-align:center;transition:.35s;min-height:150px;display:flex;flex-direction:column;gap:8px;animation:pop .5s both}
+.day h4{font-family:"Exo 2",sans-serif;text-transform:uppercase;font-size:.85rem;letter-spacing:.12em;color:var(--muted)}
+.day .slot{font-family:"Exo 2",sans-serif;font-weight:700;font-size:1.02rem;background:rgba(126,211,33,.09);border-radius:10px;padding:8px 4px}
+.day .off{color:#5b6660;font-size:.9rem;margin:auto 0}
+.day.today{border-color:var(--green);box-shadow:0 0 0 1px var(--green) inset}
+.day.today h4{color:var(--green)}
+.day.today h4::after{content:" · aujourd'hui";text-transform:none;letter-spacing:0}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.97)}}
+.note{color:var(--muted);font-size:.88rem;margin-top:20px}
+
+/* TARIFS */
+.prices{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pill{display:inline-block;background:var(--green);color:#0b0d0c;font:800 .72rem "Exo 2",sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+.price{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:34px 28px;transition:.35s}
+.price:hover{transform:translateY(-6px)}
+.price.hot{border-color:var(--green);background:linear-gradient(160deg,rgba(126,211,33,.14),var(--card) 55%)}
+.price h3{text-transform:uppercase;font-size:1rem;letter-spacing:.12em;color:var(--muted)}
+.price .amt{font-family:"Exo 2",sans-serif;font-size:2.6rem;font-weight:900;margin:12px 0 18px}
+.price .amt small{font-size:1rem;color:var(--muted);font-weight:600}
+.price ul{list-style:none;display:grid;gap:10px;color:#cfd8d3;margin-bottom:26px;font-size:.95rem}
+.price li::before{content:"— ";color:var(--green)}
+
+/* CTA */
+.cta{position:relative;border-radius:28px;overflow:hidden;padding:80px 50px;text-align:center}
+.cta::before{content:"";position:absolute;inset:0;background:url(hero.jpg) center/cover;filter:grayscale(.3);transform:scale(1.1)}
+.cta::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(11,13,12,.92),rgba(40,70,14,.85))}
+.cta>*{position:relative;z-index:1}
+.cta h2{font-size:clamp(2rem,5vw,3.6rem);text-transform:uppercase;font-weight:900;line-height:1.05;margin-bottom:16px}
+.cta p{color:#d6e2da;max-width:540px;margin:0 auto 30px}
+
+/* CONTACT / FOOTER */
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ci{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.ci small{color:var(--green);text-transform:uppercase;letter-spacing:.15em;font-size:.75rem;font-weight:600}
+.ci p{font-family:"Exo 2",sans-serif;font-size:1.15rem;font-weight:700;margin-top:6px}
+.ci .go{display:block;margin-top:10px;color:var(--green);font-size:.88rem;font-weight:600}
+.ci{transition:.3s}.ci:hover{border-color:var(--green);transform:translateY(-4px)}
+.ci .todo{color:var(--muted);font-family:Inter;font-weight:500;font-size:.95rem}
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+
+.wa{position:fixed;right:22px;bottom:22px;z-index:60;width:60px;height:60px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(37,211,102,.6);animation:float 3.5s ease-in-out infinite}
+.wa svg{width:32px;height:32px;fill:#fff}
+
+
+/* ===== EXTRA ANIMATIONS ===== */
+#loader{position:fixed;inset:0;z-index:999;background:#0b0d0c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;transition:transform .9s cubic-bezier(.8,0,.2,1)}
+#loader.done{transform:translateY(-100%)}
+#loader svg{width:120px;height:120px;animation:lgo 1.2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes lgo{from{opacity:0;transform:scale(.5) rotate(-25deg)}to{opacity:1;transform:none}}
+#loader .lt{font-family:"Exo 2",sans-serif;font-weight:900;letter-spacing:.35em;font-size:1rem;overflow:hidden}
+#loader .lt span{display:inline-block;transform:translateY(100%);animation:rise .6s forwards}
+#loader .bar{width:160px;height:3px;background:#1e2622;border-radius:3px;overflow:hidden}
+#loader .bar i{display:block;height:100%;background:var(--green);width:0;animation:load 1.4s ease forwards}
+@keyframes load{to{width:100%}}
+body.loading .hero h1 span i,body.loading .hero p,body.loading .hero .ctas{animation-play-state:paused}
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--green),#c6ff6b);z-index:100;width:0;box-shadow:0 0 12px var(--green)}
+.rotator{color:var(--green);font-weight:700;border-right:2px solid var(--green);padding-right:3px;animation:caret 1s steps(1) infinite}
+@keyframes caret{50%{border-color:transparent}}
+.card{transform-style:preserve-3d;will-change:transform}
+.card .spot{position:absolute;inset:0;pointer-events:none;background:radial-gradient(260px circle at var(--x,50%) var(--y,50%),rgba(126,211,33,.18),transparent 60%);opacity:0;transition:opacity .3s}
+.card:hover .spot{opacity:1}
+.card:hover .ico{animation:bounce .6s}
+@keyframes bounce{40%{transform:translateY(-8px) rotate(-8deg)}70%{transform:translateY(2px)}}
+.photo{clip-path:inset(0 100% 0 0);transition:clip-path 1.4s cubic-bezier(.7,0,.2,1)}
+.rv.in .photo{clip-path:inset(0 0 0 0)}
+.price.hot{position:relative;overflow:hidden}
+.price.hot::before{content:"";position:absolute;inset:-2px;background:conic-gradient(from var(--a,0deg),transparent 70%,var(--green));animation:spin 4s linear infinite;z-index:0;border-radius:20px}
+.price.hot::after{content:"";position:absolute;inset:2px;background:linear-gradient(160deg,#1c2a14,var(--card) 55%);border-radius:18px;z-index:0}
+.price.hot>*{position:relative;z-index:1}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes spin{to{--a:360deg}}
+.cursor{position:fixed;width:340px;height:340px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(rgba(126,211,33,.08),transparent 65%);transform:translate(-50%,-50%);transition:opacity .3s;left:-500px;top:-500px}
+.btn{will-change:transform}
+.btn:not(.ghost){background-size:200% 100%;background-image:linear-gradient(110deg,var(--green) 40%,#c6ff6b 50%,var(--green) 60%);animation:shine 3.5s linear infinite}
+@keyframes shine{from{background-position:150% 0}to{background-position:-50% 0}}
+.day{transition:.35s}.day:hover{transform:translateY(-6px);border-color:var(--green2)}
+.marquee:hover div{animation-play-state:paused}
+@media (hover:none){.cursor{display:none}}
+
+@media (max-width:980px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr);gap:30px}
+  .about{grid-template-columns:1fr}
+  .days{grid-template-columns:repeat(2,1fr)}
+  .prices{grid-template-columns:repeat(2,1fr)}
+  .contact{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  nav,nav.solid{backdrop-filter:none;-webkit-backdrop-filter:none}
+  nav.solid{background:#0b0d0c}
+  .links{position:fixed;top:0;left:0;width:100%;height:100vh;height:100dvh;background:#0b0d0c;flex-direction:column;justify-content:center;align-items:center;font-size:1.5rem;gap:26px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;z-index:55}
+  .links.open{opacity:1;visibility:visible}
+  .links a{opacity:0;transform:translateY(20px);transition:.4s}
+  .links.open a{opacity:1;transform:none}
+  .links.open a:nth-child(2){transition-delay:.06s}.links.open a:nth-child(3){transition-delay:.12s}.links.open a:nth-child(4){transition-delay:.18s}.links.open a:nth-child(5){transition-delay:.24s}
+  .burger{display:grid;place-items:center;position:relative;z-index:60;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.08)}
+  .burger span,.burger span::before,.burger span::after{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:.3s;position:relative}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0}
+  .burger span::before{top:-7px}.burger span::after{top:7px}
+  .burger.x span{background:transparent}
+  .burger.x span::before{top:0;transform:rotate(45deg);background:var(--green)}
+  .burger.x span::after{top:0;transform:rotate(-45deg);background:var(--green)}
+  .brand{position:relative;z-index:60;font-size:1rem}
+  body.menu{overflow:hidden}
+  body.menu .wa{display:none}
+  .cursor{display:none}
+  section{padding:80px 0}
+  .grid{grid-template-columns:1fr}
+  .prices{grid-template-columns:1fr}
+  .swoosh{opacity:.25;width:110vw;right:-40%}
+  .badge{right:10px}
+  .cta{padding:60px 24px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.hero h1 span i{transform:none}.hero p,.hero .ctas{opacity:1}}
+</style>
+</head>
+<body class="loading">
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="logo" viewBox="0 0 200 200">
+      <path d="M150 28 C 80 18, 20 55, 22 105 C 24 140, 55 160, 95 162 C 60 150, 42 128, 44 102 C 48 62, 95 34, 150 28 Z" fill="#e9eeeb"/>
+      <path d="M150 28 C 100 30, 58 58, 56 100 C 55 128, 75 148, 110 152 C 80 140, 68 120, 70 98 C 74 66, 108 40, 150 28 Z" fill="#7ED321"/>
+      <path d="M78 60 H170 V88 H108 V104 H152 V128 H108 V178 H78 Z" fill="#fff"/>
+      <path d="M40 140 C 90 162, 150 150, 192 118 C 150 160, 80 176, 40 140 Z" fill="#e9eeeb"/>
+      <path d="M52 140 C 100 156, 150 146, 186 122 C 150 150, 95 162, 52 140 Z" fill="#7ED321"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div id="loader"><svg><use href="#logo"/></svg><div class="lt"><span style="animation-delay:0.30s">F</span><span style="animation-delay:0.34s">O</span><span style="animation-delay:0.38s">X</span><span style="animation-delay:0.42s">&nbsp;</span><span style="animation-delay:0.46s">F</span><span style="animation-delay:0.50s">I</span><span style="animation-delay:0.54s">T</span><span style="animation-delay:0.58s">N</span><span style="animation-delay:0.62s">E</span><span style="animation-delay:0.66s">S</span><span style="animation-delay:0.70s">S</span><span style="animation-delay:0.74s">&nbsp;</span><span style="animation-delay:0.78s">F</span><span style="animation-delay:0.82s">A</span><span style="animation-delay:0.86s">M</span><span style="animation-delay:0.90s">I</span><span style="animation-delay:0.94s">L</span><span style="animation-delay:0.98s">Y</span></div><div class="bar"><i></i></div></div>
+<div id="progress"></div><div class="cursor" id="cursor"></div>
+<nav id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand"><svg><use href="#logo"/></svg>Fox Fitness <span style="color:var(--green)">Family</span></a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span></button>
+    <div class="links" id="links">
+      <a href="#espaces">Espaces</a>
+      <a href="#horaires">Horaires</a>
+      <a href="#tarifs">Tarifs</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/212641468485?text=Bonjour%20Fox%20Fitness%2C%20je%20veux%20m%20inscrire" target="_blank" rel="noopener" class="btn">S'inscrire</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-img"></div>
+  <svg class="swoosh" viewBox="0 0 700 500" fill="none">
+    <path d="M650 60 C 380 20, 90 140, 80 300 C 72 420, 260 470, 520 400" stroke="#7ED321" stroke-width="10" stroke-linecap="round"/>
+    <path d="M620 110 C 400 90, 170 180, 160 300 C 155 380, 280 420, 460 380" stroke="#7ED321" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+  </svg>
+  <div class="wrap">
+    <div class="tag">100% Hommes · 100% Femmes · 7j/7</div>
+    <h1><span><i>Entraîne-toi</i></span><span><i>en famille.</i></span><span><i>Deviens fort.</i></span></h1>
+    <p>Ici on fait du <span class="rotator" id="rot">Musculation</span><br>Un espace moderne, équipé et motivant, ouvert 7j/7.</p>
+    <div class="ctas">
+      <a href="#tarifs" class="btn">Rejoins la Family →</a>
+      <a href="#horaires" class="btn ghost">Voir les horaires</a>
+    </div>
+  </div>
+  <div class="scroll"></div>
+</header>
+
+<div class="marquee"><div>
+  <span>Musculation</span><span>Cardio</span><span>CrossFit</span><span>Cours variés</span><span>Be Ready</span><span>Be Positive</span>
+  <span>Musculation</span><span>Cardio</span><span>CrossFit</span><span>Cours variés</span><span>Be Ready</span><span>Be Positive</span>
+</div></div>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat rv"><b data-count="7">0</b><small>jours sur 7 ouverts</small></div>
+    <div class="stat rv d1"><b data-count="17" data-suffix="h">0</b><small>d'ouverture par jour</small></div>
+    <div class="stat rv d2"><b data-count="2">0</b><small>espaces : hommes &amp; femmes</small></div>
+    <div class="stat rv d3"><b data-count="100" data-suffix="%">0</b><small>motivation</small></div>
+  </div>
+</div>
+
+<section id="espaces">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="tag">Nos espaces</div>
+      <h2>Tout pour <em>progresser</em></h2>
+      <p>Des machines guidées aux poids libres, en passant par la piste de sprint : chaque zone est pensée pour ton objectif.</p>
+    </div>
+    <div class="grid">
+      <div class="card rv"><div class="spot"></div><div class="ico"><svg viewBox="0 0 24 24"><path d="M6 7v10M18 7v10M3 9v6M21 9v6M6 12h12"/></svg></div><h3>Musculation</h3><p>Machines guidées, poids libres et bancs pour construire force et volume.</p></div>
+      <div class="card rv d1"><div class="spot"></div><div class="ico"><svg viewBox="0 0 24 24"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l4-8h5l3 8M10 9l-1-3h-2M15 9l2-3"/></svg></div><h3>Cardio</h3><p>Vélos, tapis et machines cardio pour l'endurance et la perte de poids.</p></div>
+      <div class="card rv d2"><div class="spot"></div><div class="ico"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>CrossFit</h3><p>Piste en gazon synthétique pour sprints, traîneau et circuits fonctionnels.</p></div>
+      <div class="card rv d3"><div class="spot"></div><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.5"/><path d="M12 8v6M8 22l4-8 4 8M7 11h10"/></svg></div><h3>Cours variés</h3><p>Step, fitness et renforcement en groupe, avec des créneaux 100% femmes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap about">
+    <div class="photo-wrap rv">
+      <div class="photo"><img src="hero.jpg" alt="Salle Fox Fitness Family"></div>
+      <div class="badge"><b>7j/7</b>Ouvert</div>
+    </div>
+    <div class="rv d1">
+      <div class="tag">Pourquoi nous</div>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;line-height:1.08">Plus qu'une salle,<br><span style="color:var(--green)">une famille.</span></h2>
+      <p style="color:var(--muted);margin-top:16px">Chez Fox Fitness Family, on s'entraîne dans une ambiance positive et respectueuse. Débutant ou confirmé, tu trouves l'équipement et l'énergie pour atteindre tes objectifs.</p>
+      <ul class="checks">
+        <li>Équipement professionnel et entretenu</li>
+        <li>Horaires dédiés pour les femmes</li>
+        <li>Ouvert tôt le matin et tard le soir</li>
+        <li>Ambiance familiale et motivante</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="horaires">
+  <div class="wrap">
+    <div class="sched-top">
+      <div class="head rv" style="margin-bottom:0">
+        <div class="tag">Horaires</div>
+        <h2>Quand <em>t'entraîner</em></h2>
+      </div>
+      <div class="rv d1" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <div class="tabs" id="tabs">
+          <button data-g="h" class="on">Hommes</button>
+          <button data-g="f">Femmes</button>
+        </div>
+        <div class="live" id="live"><span class="dot"></span><span id="liveTxt">—</span></div>
+      </div>
+    </div>
+    <div class="days" id="days"></div>
+    <p class="note" id="note"></p>
+  </div>
+</section>
+
+<section id="tarifs">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="tag">Tarifs</div>
+      <h2>Choisis ta <em>formule</em></h2>
+      <p>Plus tu t'engages, moins tu paies. Inscription directe sur WhatsApp.</p>
+    </div>
+    <div class="prices">
+      <div class="price rv "><h3>1 mois</h3><div class="amt"><span data-count="200">200</span> <small>DH</small></div><ul><li>Soit 200 DH / mois</li><li>Idéal pour commencer</li><li>Cardio, musculation, CrossFit</li></ul><a href="https://wa.me/212641468485?text=Bonjour%20Fox%20Fitness%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27abonnement%201%20mois%20%28200%20DH%29" target="_blank" rel="noopener" class="btn ghost">Choisir</a></div>
+      <div class="price rv d1"><h3>3 mois</h3><div class="amt"><span data-count="450">450</span> <small>DH</small></div><ul><li>Soit 150 DH / mois</li><li>Économise 150 DH</li><li>Cardio, musculation, CrossFit</li></ul><a href="https://wa.me/212641468485?text=Bonjour%20Fox%20Fitness%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27abonnement%203%20mois%20%28450%20DH%29" target="_blank" rel="noopener" class="btn ghost">Choisir</a></div>
+      <div class="price rv d2"><h3>6 mois</h3><div class="amt"><span data-count="750">750</span> <small>DH</small></div><ul><li>Soit 125 DH / mois</li><li>Économise 450 DH</li><li>Cardio, musculation, CrossFit</li></ul><a href="https://wa.me/212641468485?text=Bonjour%20Fox%20Fitness%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27abonnement%206%20mois%20%28750%20DH%29" target="_blank" rel="noopener" class="btn ghost">Choisir</a></div>
+      <div class="price hot rv d3"><div class="pill">Meilleure offre</div><h3>1 an</h3><div class="amt"><span data-count="1200">1200</span> <small>DH</small></div><ul><li>Soit 100 DH / mois</li><li>Économise 1200 DH</li><li>Cardio, musculation, CrossFit</li></ul><a href="https://wa.me/212641468485?text=Bonjour%20Fox%20Fitness%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27abonnement%201%20an%20%281200%20DH%29" target="_blank" rel="noopener" class="btn">Choisir</a></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta rv">
+      <h2>Prêt à rejoindre<br>la <span style="color:var(--green)">Family</span> ?</h2>
+      <p>Passe nous voir au N°21, Rue Bacha Sbihi à Salé, ou écris-nous : on t'explique tout et on te fait visiter.</p>
+      <a href="https://wa.me/212641468485?text=Bonjour%20Fox%20Fitness%2C%20je%20veux%20visiter%20la%20salle" target="_blank" rel="noopener" class="btn">Écris-nous sur WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding-top:0">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="tag">Contact</div>
+      <h2>Viens nous <em>voir</em></h2>
+    </div>
+    <div class="contact">
+      <a class="ci rv" href="https://www.google.com/maps/search/?api=1&query=Rue%20Bacha%20Sbihi%2C%20Salle%20de%20f%C3%AAte%20Al%20Amal%2021%2C%20Sal%C3%A9%2C%20Maroc" target="_blank" rel="noopener"><small>Adresse</small><p>N°21, Rue Bacha Sbihi<br>Salle de fête Al Amal, Salé</p><span class="go">Voir sur Google Maps ↗</span></a>
+      <a class="ci rv d1" href="https://wa.me/212641468485" target="_blank" rel="noopener"><small>WhatsApp</small><p>+212 641-468485</p><span class="go">Écrire sur WhatsApp ↗</span></a>
+      <a class="ci rv d2" href="https://www.instagram.com/foxfitnessfamily" target="_blank" rel="noopener"><small>Instagram</small><p>@foxfitnessfamily ↗</p></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#top" class="brand"><svg><use href="#logo"/></svg>Fox Fitness Family</a>
+    <span>© <span id="yr"></span> Fox Fitness Family · <a href="https://www.instagram.com/foxfitnessfamily" target="_blank" rel="noopener" style="color:var(--green)">Instagram</a></span>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/212641468485?text=Bonjour%20Fox%20Fitness" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></a>
+
+<script>
+const S={
+  h:{label:"Hommes",days:[
+    ["Lundi",[["07:00","00:00"]]],
+    ["Mardi",[["07:00","16:15"],["20:00","00:00"]]],
+    ["Mercredi",[["07:00","00:00"]]],
+    ["Jeudi",[["07:00","16:15"],["20:00","00:00"]]],
+    ["Vendredi",[["07:00","11:00"],["13:00","00:00"]]],
+    ["Samedi",[["07:00","16:15"],["20:00","00:00"]]],
+    ["Dimanche",[["09:00","22:00"]]]],
+    note:"Mardi, jeudi et samedi en fin d'après-midi : créneau réservé aux femmes."},
+  f:{label:"Femmes",days:[
+    ["Lundi",[]],
+    ["Mardi",[["16:30","20:00"]]],
+    ["Mercredi",[]],
+    ["Jeudi",[["16:30","20:00"]]],
+    ["Vendredi",[]],
+    ["Samedi",[["16:30","20:00"]]],
+    ["Dimanche",[]]],
+    note:"Créneaux réservés exclusivement aux femmes."}
+};
+let g="h";
+const toMin=t=>{const[a,b]=t.split(":").map(Number);return a*60+b};
+const todayIdx=()=>(new Date().getDay()+6)%7;
+function render(){
+  const t=todayIdx(),box=document.getElementById("days");
+  box.innerHTML=S[g].days.map(([d,sl],i)=>`<div class="day ${i===t?"today":""}" style="animation-delay:${i*60}ms"><h4>${d}</h4>${sl.length?sl.map(s=>`<div class="slot">${s[0]} – ${s[1]}</div>`).join(""):`<div class="off">Fermé</div>`}</div>`).join("");
+  document.getElementById("note").textContent=S[g].note;
+  const n=new Date(),m=n.getHours()*60+n.getMinutes();
+  const open=S[g].days[t][1].some(([a,b])=>{const e=toMin(b)||1440;return m>=toMin(a)&&m<e});
+  const live=document.getElementById("live");
+  live.classList.toggle("open",open);
+  document.getElementById("liveTxt").textContent=(open?"Ouvert maintenant":"Fermé maintenant")+" · "+S[g].label;
+}
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#tabs button").forEach(x=>x.classList.remove("on"));b.classList.add("on");g=b.dataset.g;render()});
+render();
+
+const nav=document.getElementById("nav");
+addEventListener("scroll",()=>nav.classList.toggle("solid",scrollY>40),{passive:true});
+const links=document.getElementById("links");
+const burger=document.getElementById("burger");
+const setMenu=o=>{links.classList.toggle("open",o);burger.classList.toggle("x",o);document.body.classList.toggle("menu",o)};
+burger.onclick=()=>setMenu(!links.classList.contains("open"));
+links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+addEventListener("resize",()=>{if(innerWidth>760)setMenu(false)});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add("in");
+  e.target.querySelectorAll("[data-count]").forEach(c=>{const to=+c.dataset.count,suf=c.dataset.suffix||"";let s=null;
+    const step=ts=>{s=s||ts;const p=Math.min((ts-s)/1400,1);c.textContent=Math.round(to*(1-Math.pow(1-p,3)))+suf;if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)});
+  io.unobserve(e.target)}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+
+addEventListener("scroll",()=>{const h=document.querySelector(".hero-img");if(scrollY<innerHeight)h.style.translate=`0 ${scrollY*.3}px`},{passive:true});
+
+
+/* loader */
+addEventListener("load",()=>setTimeout(()=>{document.getElementById("loader").classList.add("done");document.body.classList.remove("loading")},1500));
+setTimeout(()=>{document.getElementById("loader").classList.add("done");document.body.classList.remove("loading")},4000);
+/* progress */
+const pr=document.getElementById("progress");
+addEventListener("scroll",()=>{pr.style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+"%"},{passive:true});
+/* typing rotator */
+(()=>{const w=["Musculation","Cardio","CrossFit","Cours variés"],el=document.getElementById("rot");let i=0,j=w[0].length,del=true;
+setTimeout(function tick(){const t=w[i];if(del){j--;if(j<=0){del=false;i=(i+1)%w.length}}else{j++;if(j>=w[i].length){del=true;el.textContent=w[i];return setTimeout(tick,1800)}}
+el.textContent=w[i].slice(0,Math.max(j,0))||"\u00a0";setTimeout(tick,del?45:85)},2600)})();
+/* tilt + spotlight */
+document.querySelectorAll(".card,.price").forEach(c=>{c.addEventListener("mousemove",e=>{const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width,py=(e.clientY-r.top)/r.height;
+c.style.transform=`perspective(800px) rotateY(${(px-.5)*10}deg) rotateX(${(.5-py)*10}deg) translateY(-6px)`;c.style.setProperty("--x",px*100+"%");c.style.setProperty("--y",py*100+"%")});
+c.addEventListener("mouseleave",()=>c.style.transform="")});
+/* magnetic buttons */
+document.querySelectorAll(".btn").forEach(b=>{b.addEventListener("mousemove",e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});b.addEventListener("mouseleave",()=>b.style.transform="")});
+/* cursor glow */
+const cu=document.getElementById("cursor");addEventListener("mousemove",e=>{cu.style.left=e.clientX+"px";cu.style.top=e.clientY+"px"},{passive:true});
+
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
